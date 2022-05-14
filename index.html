@@ -22,10 +22,9 @@ d3.csv("temperature_daily.csv", rowProcessor, (error, data) => {
     plotHeatmap(data)
 })
 
-function rowProcessor ({year, month, min, max}) {
+function rowProcessor ({date, min, max}) {
     return {
-        year,
-        month,
+        date,
         min: +min,
         max: +max
     }
@@ -51,14 +50,14 @@ function plotHeatmap (data) {
 function defineXScale (data, width) {
     return d3.scaleBand()
         .range([0, width])
-        .domain(d3.map(data, y => d.year.substring(0, 4)).keys())
+        .domain(d3.map(data, d => d.date.substring(0, 4)).keys())
         .padding(0.2)
 }
 
 function defineYScale (data, height) {
     return d3.scaleBand()
         .range([0, height])
-        .domain(d3.map(data, m => d.month.substring(0, 2)).keys())
+        .domain(d3.range(1, 13))
         .padding(0.2)
 }
 
@@ -98,7 +97,7 @@ function drawXAxis (g, xScale) {
 
 function drawYAxis (g, yScale) {
     const yAxis = d3.axisLeft(yScale)
-       // .tickFormat(d => moment(d, 'M').format('MMMM'))
+        .tickFormat(d => moment(d, 'M').format('MMMM'))
 
     g.append('g')
         .call(yAxis)
@@ -131,9 +130,8 @@ function drawDots(g, xScale, yScale, colorScale, data) {
     g.selectAll('rect')
         .data(data)
         .enter().append('rect')
-            .attr('x', y => xScale(moment(d.year).year()))
-
-            .attr('y', m => yScale(moment(d.month).month()))
+            .attr('x', d => xScale(moment(d.date).year()))
+            .attr('y', d => yScale(moment(d.date).month() + 1))
             .attr('width', xScale.bandwidth())
             .attr('height', yScale.bandwidth())
             .attr('fill', d => colorScale(d.max))
