@@ -6,6 +6,7 @@
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
+
 <script>
 
 // set the dimensions and margins of the graph
@@ -23,8 +24,8 @@ var svg = d3.select("#my_dataviz")
         "translate(" + margin.left + "," + margin.top + ")");
 
 // Labels of row and columns
-var myGroups = ["1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005"]
-var myVars = ["1", "2", "3", "4", "5", "6", "7", "8"]
+var myGroups = ["1997","1998","1999","2000","2001","2002","2003","2004"]
+var myVars = ["January", "February", "March", "April"]
 
 // Build X scales and axis:
 var x = d3.scaleBand()
