@@ -50,8 +50,7 @@ function plotHeatmap (data) {
 function defineXScale (data, width) {
     return d3.scaleBand()
         .range([0, width])
-        //.domain(d3.map(data, d => d.date.substring(0, 4)).keys())
-        .domain(d3.range(9, 21))
+        .domain(d3.map(data, d => d.date.substring(0, 4)).keys())
         .padding(0.2)
 }
 
