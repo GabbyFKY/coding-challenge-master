@@ -50,12 +50,10 @@ function plotHeatmap (data) {
 function defineXScale (data, width) {
     
     return d3.scaleBand()
-        .range([9, width])
+        .range([90, width])
         //.domain(myGroups)
         .domain(d3.map(data, d => d.date.substring(0, 4)).keys())
         .padding(0.2)
-        var myGroups = d3.scaleBand()
-        .domain("2006", "2007", "2008","2009","2010","2011","2012")
 }
 
 function defineYScale (data, height) {
@@ -109,6 +107,7 @@ function drawYAxis (g, yScale) {
 
 function drawDots(g, xScale, yScale, colorScale, data) {
     let minMax = 'max'
+   
     function toggleMinMax () {
         minMax = minMax === 'max' ? 'min' : 'max'
         g.selectAll('rect')
@@ -119,6 +118,7 @@ function drawDots(g, xScale, yScale, colorScale, data) {
         .append('div')
         .attr('class', 'tooltip')
         .attr('display', 'none')
+   
     function showTooltip (d) {
         tooltip
             .text(`max: ${d.max} min: ${d.min}`)
