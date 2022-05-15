@@ -55,7 +55,7 @@ function plotHeatmap (data) {
 // Year > 4 digit
 function defineXScale (data, width) {
     return d3.scaleBand()
-        .range([9, width])
+        .range([9, 21])
         .domain(d3.map(data, d => d.date.substring(0, 4)).keys())
         .padding(0.2)
 }
