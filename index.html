@@ -41,7 +41,7 @@ function plotHeatmap (data) {
     const margins = { top: 20, right: 40, bottom: 30, left: 60 }
 
     //define the scale based on length of data/ # category of data
-    const xScale = defineXScale(0, 21)
+    const xScale = defineXScale(0, 22)
     const yScale = defineYScale(data, height)
     const colorScale = defineColorScale()
 
@@ -55,7 +55,7 @@ function plotHeatmap (data) {
 // Year > 4 digit
 function defineXScale (data, width) {
     return d3.scaleBand()
-        .range([9, 21])
+        .range([0, width])
         .domain(d3.map(data, d => d.date.substring(0, 4)).keys())
         .padding(0.2)
 }
