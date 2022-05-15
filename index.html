@@ -51,7 +51,7 @@ function defineXScale (data, width) {
     
     return d3.scaleBand()
     // range = the gap in front of x-axis
-        .range([9, width])
+        .range([90, width])
         //.domain(myGroups)
         .domain(d3.map(data, d => d.date.substring(0, 4)).keys())
         .padding(0.2)
