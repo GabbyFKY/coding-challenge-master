@@ -135,7 +135,6 @@ function drawDots(g, xScale, yScale, colorScale, data) {
     g.selectAll('rect')
         .data(data)
         .enter().append('rect')
-        if(moment(d.date).year()>'2009'){
             .attr('x', d => xScale(moment(d.date).year()))
             .attr('y', d => yScale(moment(d.date).month() + 1))
             .attr('width', xScale.bandwidth())
@@ -145,7 +144,6 @@ function drawDots(g, xScale, yScale, colorScale, data) {
             .on('mouseover', showTooltip)
             .on('mouseout', dismissTooltip)
             .on('mousemove', showTooltip)
-        }
 }
 
 </script>
