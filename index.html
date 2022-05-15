@@ -16,12 +16,15 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
 <script>
+
+    // read csv
 d3.csv('temperature_daily.csv', rowProcessor, (error, data) => {
     if (error) throw error
 
     plotHeatmap(data)
 })
 
+// 3 categories
 function rowProcessor ({date, min, max}) {
     return {
         date,
@@ -37,19 +40,22 @@ function plotHeatmap (data) {
     const height = 450
     const margins = { top: 20, right: 40, bottom: 30, left: 60 }
 
+    //define the scale based on length of data/ # category of data
     const xScale = defineXScale(data, width)
     const yScale = defineYScale(data, height)
     const colorScale = defineColorScale()
 
+    // const g = graph??
     const g = createCanvas(width, height, margins)
     drawXAxis(g, xScale)
     drawYAxis(g, yScale)
     drawDots(g, xScale, yScale, colorScale, data)
 }
 
+// Year > 4 digit
 function defineXScale (data, width) {
     return d3.scaleBand()
-        .range([0, width])
+        .range([9, width])
         .domain(d3.map(data, d => d.date.substring(0, 4)).keys())
         .padding(0.2)
 }
