@@ -51,7 +51,7 @@ function defineXScale (data, width) {
     
     return d3.scaleBand()
     // range = the gap in front of x-axis
-        .range([90, width])
+        .range([9, width])
         //.domain(myGroups)
         .domain(d3.map(data, d => d.date.substring(0, 4)).keys())
         .padding(0.2)
@@ -135,6 +135,7 @@ function drawDots(g, xScale, yScale, colorScale, data) {
     g.selectAll('rect')
         .data(data)
         .enter().append('rect')
+        if(moment(d.date).year()>2009){
             .attr('x', d => xScale(moment(d.date).year()))
             .attr('y', d => yScale(moment(d.date).month() + 1))
             .attr('width', xScale.bandwidth())
@@ -144,6 +145,7 @@ function drawDots(g, xScale, yScale, colorScale, data) {
             .on('mouseover', showTooltip)
             .on('mouseout', dismissTooltip)
             .on('mousemove', showTooltip)
+        }
 }
 
 </script>
