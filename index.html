@@ -135,7 +135,7 @@ function drawDots(g, xScale, yScale, colorScale, data) {
     g.selectAll('rect')
         .data(data)
         .enter().append('rect')
-            .attr('x', d => xScale(moment(d.date).year())+100)
+            .attr('x', d => xScale(moment(d.date).year()))
             .attr('y', d => yScale(moment(d.date).month() + 1))
             .attr('width', xScale.bandwidth())
             .attr('height', yScale.bandwidth())
