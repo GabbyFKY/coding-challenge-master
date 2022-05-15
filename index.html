@@ -41,7 +41,7 @@ function plotHeatmap (data) {
     const margins = { top: 20, right: 40, bottom: 30, left: 60 }
 
     //define the scale based on length of data/ # category of data
-    const xScale = defineXScale(0, 22)
+    const xScale = defineXScale(data, width)
     const yScale = defineYScale(data, height)
     const colorScale = defineColorScale()
 
